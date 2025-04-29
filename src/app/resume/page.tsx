@@ -1,26 +1,30 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
+// import { motion } from "framer-motion"; // Temporarily commenting out
 import Link from "next/link";
-import GlassCard from '@/components/GlassCard';
-import Button from '@/components/Button';
+import GlassCard from '@/components/GlassCard'; // Fixed import path
+import Button from '@/components/Button'; // Fixed import path
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "Download my resume and see my experience. Placeholder resume page description.",
 };
+
+// const sectionVariants = { // Temporarily commenting out
+//   hidden: { opacity: 0, y: 20 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: { duration: 0.6, ease: "easeOut" },
+//   },
+// };
 
 export default function ResumePage() {
   return (
-    <motion.section
+    <section // Changed from motion.section
       className="max-w-3xl mx-auto py-16 px-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg mt-8"
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
+      // initial="hidden" // Removed motion props
+      // animate="visible" // Removed motion props
+      // variants={sectionVariants} // Removed motion props
     >
       <h1 className="text-4xl font-bold mb-6 text-center">Resume</h1>
       <div className="flex flex-col items-center">
@@ -51,6 +55,6 @@ export default function ResumePage() {
           </div>
         </GlassCard>
       </div>
-    </motion.section>
+    </section>
   );
 }

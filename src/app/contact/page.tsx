@@ -1,25 +1,29 @@
-"use client";
+import type { Metadata } from "next";
+// import { motion } from "framer-motion"; // Temporarily commenting out
+import GlassCard from '@/components/GlassCard'; // Fixed import path
+import Button from '@/components/Button'; // Fixed import path
 
-import { motion } from "framer-motion";
-import GlassCard from '@/components/GlassCard';
-import Button from '@/components/Button';
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact me for collaborations, project inquiries, or just to say hi. Placeholder contact page description.",
 };
+
+// const sectionVariants = { // Temporarily commenting out
+//   hidden: { opacity: 0, y: 20 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: { duration: 0.6, ease: "easeOut" },
+//   },
+// };
 
 export default function ContactPage() {
   return (
-    <motion.section
+    <section // Changed from motion.section
       className="max-w-xl mx-auto py-16 px-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg mt-8"
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
+      // initial="hidden" // Removed motion props
+      // animate="visible" // Removed motion props
+      // variants={sectionVariants} // Removed motion props
     >
       <h1 className="text-4xl font-bold mb-6 text-center">Contact</h1>
       <p className="text-gray-300 text-lg mb-8 text-center">
@@ -49,6 +53,6 @@ export default function ContactPage() {
           <a href="#" className="hover:text-blue-400">LinkedIn</a>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

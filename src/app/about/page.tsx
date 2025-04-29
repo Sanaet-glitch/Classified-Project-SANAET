@@ -1,24 +1,29 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
+// import { motion } from "framer-motion"; // Temporarily commenting out
 import GlassCard from '@/components/GlassCard';
+import Button from '@/components/Button';
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn more about me, my skills, and experience. Placeholder about page description.",
 };
+
+// const sectionVariants = {  // Temporarily commenting out
+//   hidden: { opacity: 0, y: 20 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: { duration: 0.6, ease: "easeOut" },
+//   },
+// };
 
 export default function AboutPage() {
   return (
-    <motion.section
+    <section // Changed from motion.section
       className="max-w-3xl mx-auto py-16 px-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg mt-8"
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
+      // initial="hidden"  // Removed motion props
+      // animate="visible" // Removed motion props
+      // variants={sectionVariants} // Removed motion props
     >
       <GlassCard>
         <h1 className="text-4xl font-bold mb-6 text-center">About Me</h1>
@@ -53,6 +58,6 @@ export default function AboutPage() {
           </ul>
         </div>
       </GlassCard>
-    </motion.section>
+    </section>
   );
 }

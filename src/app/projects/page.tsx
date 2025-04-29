@@ -1,26 +1,18 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
+// import { motion } from "framer-motion";
 import Link from "next/link";
 import GlassCard from '@/components/GlassCard';
 import Button from '@/components/Button';
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Showcase of my projects. Placeholder projects page description.",
 };
 
 export default function ProjectsPage() {
   return (
-    <motion.section
+    <section
       className="max-w-5xl mx-auto py-16 px-4"
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
     >
       <h1 className="text-4xl font-bold mb-8 text-center">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -42,6 +34,6 @@ export default function ProjectsPage() {
         </GlassCard>
       </div>
       <p className="text-center text-gray-500 mt-8">[More projects coming soon...]</p>
-    </motion.section>
+    </section>
   );
 }

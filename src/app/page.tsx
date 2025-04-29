@@ -1,32 +1,20 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import GlassCard from '@/components/GlassCard';
-import Button from '@/components/Button';
+import GlassCard from '../components/GlassCard';
+import Button from '../components/Button';
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Welcome to my portfolio. Explore my projects, blog, and more. Placeholder home page description.",
 };
 
 export default function HomePage() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <motion.section
+      <section
         className="text-center py-16"
-        initial="hidden"
-        animate="visible"
-        variants={sectionVariants}
       >
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
           Welcome to My Portfolio
@@ -42,16 +30,12 @@ export default function HomePage() {
             Read Blog
           </Link>
         </div>
-      </motion.section>
+      </section>
 
       {/* About Section */}
-      <motion.section
+      <section
         id="about"
         className="py-12 px-6 max-w-3xl mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
       >
         <GlassCard>
           <h2 className="text-3xl font-bold text-center mb-8">
@@ -69,16 +53,12 @@ export default function HomePage() {
             </p>
           </div>
         </GlassCard>
-      </motion.section>
+      </section>
 
       {/* Projects Section */}
-      <motion.section
+      <section
         id="projects"
         className="py-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
       >
         <h2 className="text-3xl font-bold text-center mb-8">
           Projects
@@ -104,7 +84,7 @@ export default function HomePage() {
         <p className="text-center text-gray-500 mt-8">
           [More projects coming soon...]
         </p>
-      </motion.section>
+      </section>
     </div>
   );
 }
