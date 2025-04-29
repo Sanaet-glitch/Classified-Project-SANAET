@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0e1217;
+  --background-darker: #090c10;
+  --foreground: #ffffff;
+  --theme-cyan: #18FFFF;
+  --theme-teal: #00E5E5;
+  --theme-purple: #9C6BFF;
+  --theme-coral: #FF7676;
 }
 
 @theme inline {
@@ -12,47 +17,81 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: linear-gradient(to bottom right, var(--background), var(--background-darker));
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 3D Theme Custom Styles */
+.text-gradient-cyan {
+  background: linear-gradient(to right, var(--theme-cyan), var(--theme-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(to right, var(--theme-purple), #8452FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-coral {
+  background: linear-gradient(to right, var(--theme-coral), #FF5252);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(24, 255, 255, 0.7);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 10px rgba(156, 107, 255, 0.7);
+}
+
+.glow-text-coral {
+  text-shadow: 0 0 10px rgba(255, 118, 118, 0.7);
 }
 
 /* rehype-pretty-code github-dark theme tweaks */
 .code-highlight, pre[data-theme] {
   background: #161b22 !important;
   color: #c9d1d9 !important;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   padding: 1.25em 1em;
   overflow-x: auto;
   font-size: 1em;
   margin-bottom: 1.5em;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 pre[data-theme] code {
   background: none !important;
   color: inherit !important;
   font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Liberation Mono', 'Courier New', monospace;
 }
+
 /* Highlighted line */
 [data-highlighted-line] {
-  background: rgba(56,182,255,0.08);
-  border-left: 3px solid #38b6ff;
+  background: rgba(24, 255, 255, 0.08);
+  border-left: 3px solid var(--theme-cyan);
   display: block;
   margin-left: -1em;
   margin-right: -1em;
   padding-left: 0.75em;
 }
+
 /* Inline code */
 .prose code {
-  background: #23272e;
-  color: #ff38e1;
+  background: rgba(30, 36, 49, 0.75);
+  color: var(--theme-coral);
   border-radius: 0.3em;
   padding: 0.15em 0.4em;
   font-size: 0.95em;
