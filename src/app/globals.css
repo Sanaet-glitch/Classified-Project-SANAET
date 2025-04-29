@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* rehype-pretty-code github-dark theme tweaks */
+.code-highlight, pre[data-theme] {
+  background: #161b22 !important;
+  color: #c9d1d9 !important;
+  border-radius: 0.5rem;
+  padding: 1.25em 1em;
+  overflow-x: auto;
+  font-size: 1em;
+  margin-bottom: 1.5em;
+}
+pre[data-theme] code {
+  background: none !important;
+  color: inherit !important;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Liberation Mono', 'Courier New', monospace;
+}
+/* Highlighted line */
+[data-highlighted-line] {
+  background: rgba(56,182,255,0.08);
+  border-left: 3px solid #38b6ff;
+  display: block;
+  margin-left: -1em;
+  margin-right: -1em;
+  padding-left: 0.75em;
+}
+/* Inline code */
+.prose code {
+  background: #23272e;
+  color: #ff38e1;
+  border-radius: 0.3em;
+  padding: 0.15em 0.4em;
+  font-size: 0.95em;
+}
