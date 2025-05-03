@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DataCard from './DataCard';
 
@@ -11,36 +10,40 @@ interface SkillCategory {
 }
 
 const SkillsSection: React.FC = () => {
-  // Placeholder skills - replace with your actual skills
+  // Updated skill categories from CV
   const skillCategories: SkillCategory[] = [
     {
-      name: "Frontend",
+      name: "Programming Languages",
       skills: [
-        { name: "React", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Next.js", level: 80 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Framer Motion", level: 75 }
+        { name: "Python", level: 90 },
+        { name: "Java", level: 80 },
+        { name: "JavaScript", level: 85 },
+        { name: "C++", level: 70 },
+        { name: "C#", level: 65 }
       ]
     },
     {
-      name: "Backend",
+      name: "Web Development (Frontend/Backend)",
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express", level: 80 },
-        { name: "Python", level: 70 },
-        { name: "GraphQL", level: 65 },
-        { name: "REST API", level: 90 }
+        { name: "Responsive Interfaces", level: 85 },
+        { name: "Server-side Logic", level: 80 },
+        { name: "Database Integration", level: 75 }
       ]
     },
     {
-      name: "Tools & DevOps",
+      name: "Debugging & Testing",
       skills: [
-        { name: "Git", level: 90 },
-        { name: "Docker", level: 75 },
-        { name: "CI/CD", level: 70 },
-        { name: "AWS", level: 65 },
-        { name: "Testing", level: 80 }
+        { name: "Identifying Bugs", level: 80 },
+        { name: "Writing Test Cases", level: 75 },
+        { name: "Code Reliability", level: 80 }
+      ]
+    },
+    {
+      name: "Problem-Solving & Algorithms",
+      skills: [
+        { name: "Logical Thinking", level: 85 },
+        { name: "Efficient Coding", level: 80 },
+        { name: "Optimizing Solutions", level: 75 }
       ]
     }
   ];

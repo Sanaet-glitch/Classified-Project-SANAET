@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DataCard from './DataCard';
 import { ArrowDown } from 'lucide-react';
@@ -11,40 +10,41 @@ interface TimelineItem {
 }
 
 const ResumeSection: React.FC = () => {
-  // Placeholder timeline items - replace with your actual experience
+  // Updated work experience from CV
   const workExperience: TimelineItem[] = [
     {
-      year: "2021 - Present",
-      title: "Senior Frontend Developer",
-      organization: "TechCorp Industries",
-      description: "Led development of mission-critical web applications using React and Next.js. Implemented secure authentication systems and optimized performance."
+      year: "04/2025 – present",
+      title: "Attachee, ICT Department",
+      organization: "The Nairobi Hospital (TNH)",
+      description: `Contributed to the redesign and optimization of the hospital website, developed internal tools, and supported IT operations to enhance healthcare service delivery.`
     },
     {
-      year: "2019 - 2021",
-      title: "Full-Stack Developer",
-      organization: "InnovateTech Solutions",
-      description: "Developed and maintained full-stack applications using Node.js and React. Collaborated with cross-functional teams to deliver projects on schedule."
+      year: "05/2023 – 08/2023",
+      title: "Attachee",
+      organization: "Kenya Ports Authority",
+      description: `Developed and maintained software solutions to streamline port operations, modernized legacy systems, and ensured reliability of mission-critical applications.`
     },
     {
-      year: "2017 - 2019",
-      title: "Junior Developer",
-      organization: "DevLabs Inc.",
-      description: "Assisted in building responsive web applications. Learned and implemented modern development practices and technologies."
+      year: "2023 – present",
+      title: "Volunteer",
+      organization: "Naret Olosho Community-Based Organization (CBO)",
+      description: `Engaged in community development, advocacy, and digital outreach to support vulnerable groups and promote social welfare initiatives.`
     }
   ];
-  
+
+  // Updated education from CV
   const education: TimelineItem[] = [
     {
-      year: "2013 - 2017",
-      title: "B.S. Computer Science",
-      organization: "Tech University",
-      description: "Specialized in software engineering with focus on web technologies and security. Graduated with honors."
+      year: "2021 – 2025 (expected)",
+      title: "Bachelor of Science in Software Development",
+      organization: "KCA University, Nairobi, Kenya",
+      description: "Specialized in software engineering, web technologies, and security. Expected graduation: 28 November 2025."
     },
     {
-      year: "2017 - 2018",
-      title: "Advanced Web Development Certification",
-      organization: "Code Academy",
-      description: "Intensive program covering modern web development technologies and practices."
+      year: "2017 – 2020",
+      title: "Kenya Certificate of Secondary Education (KCSE)",
+      organization: "Koelel Forces Academy, Nakuru, Kenya",
+      description: "Completed secondary education with a focus on sciences."
     }
   ];
 

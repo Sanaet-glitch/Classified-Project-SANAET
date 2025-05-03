@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import DataCard from './DataCard';
 
@@ -16,11 +15,11 @@ const ProjectsSection: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Project Alpha",
-      description: "Secure communication system with end-to-end encryption. Designed for mission-critical operations.",
-      technologies: ["React", "Node.js", "WebSockets", "Encryption"],
-      imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
-      link: "#"
+      title: "SmartCampus: Smart Attendance System",
+      description: "A modern, secure, network-based attendance system for educational institutions. Features QR code and network-based verification, real-time monitoring, and anti-fraud measures.",
+      technologies: ["Python", "Django", "REST API", "HTML5", "CSS3", "JavaScript", "Security"],
+      imageUrl: "/smart-campus.avif",
+      link: "https://github.com/Sanaet-glitch/Smart-Campus"
     },
     {
       id: 2,
