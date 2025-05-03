@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import DataCard from './DataCard';
 import { useToast } from '@/hooks/use-toast';
 
@@ -24,26 +25,44 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS environment variables are not set.');
+      }
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formState.name,
+          from_email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+        },
+        publicKey
+      );
       toast({
-        title: "Message Transmitted",
-        description: "Your communication has been received.",
-        variant: "default",
+        title: 'Message Transmitted',
+        description: 'Your communication has been received.',
+        variant: 'default',
       });
-      
-      // Reset form
       setFormState({
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       });
-    }, 1500);
-    
-    // In real implementation, you would send the form data to your backend or a service like EmailJS
+    } catch (error) {
+      toast({
+        title: 'Transmission Failed',
+        description: 'There was an error sending your message. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
