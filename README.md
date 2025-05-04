@@ -1,73 +1,142 @@
-# Welcome to your Lovable project
+# Classified Project SANAET
 
-## Project info
+> **Mission-Critical Developer Portfolio**  
+> _Unauthorized Access Highly Encouraged_
 
-**URL**: https://lovable.dev/projects/1c858885-6e31-4262-88b3-7a3e7eb82957
+---
 
-## How can I edit this code?
+## 🛰️ Project Overview
 
-There are several ways of editing your application.
+**Classified Project SANAET** is a cyberpunk-themed, production-grade developer portfolio designed to showcase the skills, projects, and operational history of a full-stack software engineer. Built for maximum impact and security, this portfolio is ready for deployment on Vercel and features a unique, immersive interface inspired by espionage and intelligence dossiers.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c858885-6e31-4262-88b3-7a3e7eb82957) and start prompting.
+## 🕵️‍♂️ Mission Statement
 
-Changes made via Lovable will be committed automatically to this repo.
+Deliver a visually striking, interactive, and secure online presence for a developer with a focus on:
+- Modern web technologies
+- Real-world project experience
+- Professional and community engagement
+- Secure, confidential communication
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🗂️ Key Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Hero Section:** Animated cyberpunk intro, glitch effects, and agent profile.
+- **Mission Archives (Projects):**
+  - Declassified project cards with tech stack, images, and direct links (e.g., SmartCampus attendance system).
+- **Agent Dossier (Resume):**
+  - Summarized field operations (work experience), training, and education.
+  - Downloadable full resume (PDF).
+- **Agent Capabilities (Skills):**
+  - Technical and soft skills, tools, and technologies visualized with progress bars and badges.
+- **Asset Evaluations (Testimonials):**
+  - Rotating testimonials from collaborators and references.
+- **Research Logs (Blog):**
+  - Placeholder for future technical articles and mission reports.
+- **Secure Uplink (Contact):**
+  - Encrypted contact form powered by EmailJS for confidential communication.
+  - Social and professional network links.
+- **Responsive Design:**
+  - Fully mobile-friendly and accessible.
+- **Cyberpunk UI:**
+  - Neon gradients, glassmorphism, animated borders, and terminal-inspired effects.
 
-Follow these steps:
+---
 
+## 🛠️ Technology Stack
+
+- **Frontend:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS, custom CSS, shadcn-ui
+- **UI/UX:** Lucide icons, animated effects, custom DataCard components
+- **Email:** EmailJS (for secure contact form)
+- **Deployment:** Vercel-ready
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
+cd Classified-Project-SANAET
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Install Dependencies
+```sh
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 3. Configure Environment Variables
+Create a `.env` file in the project root:
+```
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 4. Run Locally
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 5. Build for Production
+```sh
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## ☁️ Deployment (Vercel)
+1. Push your code to GitHub.
+2. Import the repo into [Vercel](https://vercel.com/).
+3. Add the same environment variables in the Vercel dashboard.
+4. Deploy and enjoy your classified portfolio!
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 📁 Folder Structure
+```
+public/           # Static assets (images, favicon, etc.)
+src/
+  components/     # All React components (sections, UI, etc.)
+  hooks/          # Custom React hooks
+  lib/            # Utility functions
+  pages/          # Main page(s)
+  App.tsx         # App entry point
+  index.css       # Global styles
+  ...
+```
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🛡️ Customization & Theming
+- Update your agent profile, resume, and project data in the respective components in `src/components/`.
+- Replace images in `public/` as needed (e.g., project screenshots).
+- Tweak theme colors and effects in `tailwind.config.ts` and custom CSS files.
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/1c858885-6e31-4262-88b3-7a3e7eb82957) and click on Share -> Publish.
+## 🔒 Security & Best Practices
+- All communications via the contact form are encrypted in transit (TLS via EmailJS).
+- No sensitive data is stored in the repo; use environment variables for secrets.
+- Follows modern accessibility and responsive design standards.
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 👤 Credits
+- Designed and developed by SANAET
+- Inspired by cyberpunk, espionage, and classified mission aesthetics
+- Built with open-source tools and libraries
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📜 License
+This project is open source and available under the MIT License.
+
+---
+
+> **Status:** Operational  
+> **Access Level:** AUTHORIZED  
+> **Connection:** SECURE
