@@ -58,6 +58,17 @@ const SkillsSection: React.FC = () => {
           <p className="text-white/70 max-w-xl mx-auto">
             Technical proficiencies and specialized skill sets for mission execution.
           </p>
+          <div className="mt-4 flex flex-col items-center">
+            <div className="w-64 bg-black/40 rounded-lg p-4 neon-border shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-mono text-xs text-primary">MISSION COMPLETION</span>
+                <span className="font-mono text-xs text-green-400 animate-pulse">98%</span>
+              </div>
+              <div className="h-3 bg-black/30 rounded-full overflow-hidden">
+                <div className="h-full bg-green-400 animate-mission-progress" style={{ width: '98%' }}></div>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -128,16 +128,26 @@ const ResumeSection: React.FC = () => {
         </div>
         
         <div className="text-center">
-          <a 
-            href="/GEORGE SANAET SANKUI RESUME.pdf" 
-            download
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center glass px-6 py-3 rounded-md hover:neon-border transition-all group"
+          <button
+            onClick={e => {
+              const btn = e.currentTarget;
+              btn.classList.add('transmitting');
+              setTimeout(() => btn.classList.remove('transmitting'), 1800);
+            }}
+            className="inline-flex items-center glass px-6 py-3 rounded-md hover:neon-border transition-all group relative overflow-hidden resume-download-btn"
           >
             <span className="mr-2">Download Full Dossier</span>
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-          </a>
+            <a
+              href="/GEORGE SANAET SANKUI RESUME.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 w-full h-full z-10 opacity-0 cursor-pointer"
+              tabIndex={-1}
+            />
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-mono text-primary pointer-events-none transmitting-indicator hidden">TRANSMITTING...</span>
+          </button>
           <p className="mt-2 text-xs text-white/50 font-mono">
             [PDF FORMAT // ENCRYPTION: NONE]
           </p>

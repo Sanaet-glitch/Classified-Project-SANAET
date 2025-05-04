@@ -58,6 +58,20 @@ const Navigation: React.FC = () => {
 
   return (
     <>
+      <div className="fixed top-6 left-6 z-50 flex items-center gap-3">
+        <button
+          onClick={() => {
+            document.documentElement.classList.toggle('theme-stealth');
+            document.documentElement.classList.toggle('theme-alert');
+          }}
+          className="glass px-3 py-1 rounded-full neon-border text-xs font-mono text-primary hover:text-white transition-colors focus:outline-none"
+          aria-label="Toggle theme"
+        >
+          <span className="hidden md:inline">{document.documentElement.classList.contains('theme-stealth') ? 'STEALTH MODE' : 'ALERT MODE'}</span>
+          <span className="md:hidden">🌓</span>
+        </button>
+      </div>
+
       <nav className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
         <div className="flex flex-col items-center space-y-6">
           {navItems.map(item => (
