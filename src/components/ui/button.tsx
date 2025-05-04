@@ -1,3 +1,5 @@
+// Button is a styled, variant-aware button component using shadcn/ui patterns.
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"

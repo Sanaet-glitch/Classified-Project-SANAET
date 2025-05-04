@@ -1,3 +1,5 @@
+// Progress is a styled progress bar component using shadcn/ui patterns.
+
 import * as React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
 

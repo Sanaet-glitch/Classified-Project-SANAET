@@ -1,3 +1,5 @@
+// Input is a styled input field component using shadcn/ui patterns.
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

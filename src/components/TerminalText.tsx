@@ -1,3 +1,4 @@
+// TerminalText animates text as if typed in a terminal, with optional speed, delay, and completion callback.
 
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';

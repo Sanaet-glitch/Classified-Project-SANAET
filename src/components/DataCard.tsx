@@ -1,3 +1,4 @@
+// DataCard is a reusable glassmorphic card with a security badge and neon border for section content.
 
 import React from 'react';
 import { cn } from '@/lib/utils';

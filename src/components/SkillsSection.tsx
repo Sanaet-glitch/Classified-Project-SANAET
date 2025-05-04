@@ -1,3 +1,5 @@
+// SkillsSection displays technical and soft skills with animated progress bars and mission completion.
+
 import React from 'react';
 import DataCard from './DataCard';
 

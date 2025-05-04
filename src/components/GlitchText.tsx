@@ -1,3 +1,5 @@
+// GlitchText animates text with a cyberpunk-style glitch effect at configurable intervals and intensity.
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 

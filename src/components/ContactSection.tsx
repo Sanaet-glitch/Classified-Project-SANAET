@@ -1,3 +1,5 @@
+// ContactSection provides a secure contact form and displays contact/social info for collaboration.
+
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import DataCard from './DataCard';
@@ -14,6 +16,7 @@ const ContactSection: React.FC = () => {
   
   const [loading, setLoading] = useState(false);
   
+  // Handle input changes for the contact form
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({
@@ -22,6 +25,7 @@ const ContactSection: React.FC = () => {
     }));
   };
   
+  // Handle form submission and send email via EmailJS
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -46,7 +50,7 @@ const ContactSection: React.FC = () => {
       toast({
         title: 'Message Transmitted',
         description: 'Your communication has been received.',
-        variant: 'default',
+        variant: 'default', // Show success toast
       });
       setFormState({
         name: '',
@@ -58,7 +62,7 @@ const ContactSection: React.FC = () => {
       toast({
         title: 'Transmission Failed',
         description: 'There was an error sending your message. Please try again later.',
-        variant: 'destructive',
+        variant: 'destructive', // Show error toast
       });
     } finally {
       setLoading(false);

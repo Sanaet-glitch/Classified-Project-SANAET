@@ -1,3 +1,5 @@
+// Navigation provides a floating sidebar, theme switcher, and scroll-to-top for section navigation.
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { ArrowUp } from 'lucide-react';

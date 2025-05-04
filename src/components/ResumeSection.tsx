@@ -1,3 +1,5 @@
+// ResumeSection displays work experience, education, and a downloadable resume in a dossier format.
+
 import React from 'react';
 import DataCard from './DataCard';
 import { ArrowDown } from 'lucide-react';

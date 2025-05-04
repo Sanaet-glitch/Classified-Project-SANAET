@@ -1,3 +1,4 @@
+// BlogSection displays a placeholder for future blog posts and technical writings.
 
 import React from 'react';
 import DataCard from './DataCard';

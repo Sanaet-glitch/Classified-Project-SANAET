@@ -1,3 +1,5 @@
+// ProjectsSection displays a grid of declassified projects with details and tech stack.
+
 import React, { useState } from 'react';
 import DataCard from './DataCard';
 
@@ -120,13 +122,3 @@ const ProjectsSection: React.FC = () => {
 };
 
 export default ProjectsSection;
-
-/* Add this to the file or your global CSS (e.g., App.css or index.css) if not already present */
-// @layer utilities {
-//   @keyframes blinker {
-//     50% { opacity: 0; }
-//   }
-//   .animate-blink {
-//     animation: blinker 1s linear infinite;
-//   }
-// }

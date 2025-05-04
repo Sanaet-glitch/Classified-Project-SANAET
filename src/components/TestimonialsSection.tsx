@@ -1,3 +1,5 @@
+// TestimonialsSection displays rotating testimonials from collaborators and clients.
+
 import React, { useState, useEffect, useCallback } from 'react';
 import DataCard from './DataCard';
 import { ArrowLeft, ArrowRight } from 'lucide-react';

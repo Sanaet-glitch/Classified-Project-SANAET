@@ -1,3 +1,4 @@
+// SecurityBadge displays a color-coded badge for a given security clearance level.
 
 import React from 'react';
 import { cn } from '@/lib/utils';

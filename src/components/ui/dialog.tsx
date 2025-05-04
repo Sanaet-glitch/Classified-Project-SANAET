@@ -1,3 +1,5 @@
+// Dialog provides accessible modal dialogs using Radix UI and shadcn/ui patterns.
+
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
