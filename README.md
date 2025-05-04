@@ -125,8 +125,9 @@ src/
 
 ---
 
-## 👤 Credits
-- Designed and developed by SANAET
+## 👤 Credits & Attribution
+- Designed and developed by **SANAET**
+- If you use or adapt this project, please retain this credit in your documentation or about section.
 - Inspired by cyberpunk, espionage, and classified mission aesthetics
 - Built with open-source tools and libraries
 

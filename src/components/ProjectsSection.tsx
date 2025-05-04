@@ -23,19 +23,19 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 2,
-      title: "Operation Sentinel",
-      description: "Real-time monitoring dashboard with predictive analytics and anomaly detection.",
-      technologies: ["Vue.js", "D3.js", "Python", "TensorFlow"],
-      imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-      link: "#"
+      title: "Classified Portfolio Project",
+      description: "A cyberpunk-themed, production-ready developer portfolio built with React, TypeScript, and Tailwind CSS. Features immersive UI, project archives, resume, skills, testimonials, blog, and a secure contact form.",
+      technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "EmailJS", "shadcn-ui"],
+      imageUrl: "/portfolio-image.avif",
+      link: "https://github.com/Sanaet-glitch/Classified-Project-SANAET"
     },
     {
       id: 3,
-      title: "Project Nexus",
-      description: "Distributed system for parallel processing of large datasets with fault tolerance.",
-      technologies: ["Kubernetes", "Go", "Apache Kafka", "PostgreSQL"],
-      imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-      link: "#"
+      title: "Sleeper Guardian Beacon",
+      description: "A cross-platform anti-theft tracking solution for laptops that remains dormant until activated. Provides accurate location tracking, remote device management, and evidence gathering for stolen devices.",
+      technologies: ["React", "TypeScript", "Vite", "shadcn-ui", "Security"],
+      imageUrl: "/beacon-image.avif",
+      link: "#UNDER_DEVELOPMENT"
     }
   ];
 
@@ -93,14 +93,23 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
                 
-                <a 
-                  href={project.link} 
-                  className="inline-flex items-center text-sm font-mono text-primary hover:text-white transition-colors"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <span>View Project Details</span>
-                </a>
+                {project.link === "#UNDER_DEVELOPMENT" ? (
+                  <div className="flex flex-col items-start mt-6">
+                    <span className="inline-flex items-center text-sm font-mono text-green-400 animate-blink font-bold" style={{animation: 'blinker 1s linear infinite'}}>
+                      <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                      UNDER DEVELOPMENT
+                    </span>
+                  </div>
+                ) : (
+                  <a 
+                    href={project.link} 
+                    className="inline-flex items-center text-sm font-mono text-primary hover:text-white transition-colors"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <span>View Project Details</span>
+                  </a>
+                )}
               </DataCard>
             </div>
           ))}
@@ -111,3 +120,13 @@ const ProjectsSection: React.FC = () => {
 };
 
 export default ProjectsSection;
+
+/* Add this to the file or your global CSS (e.g., App.css or index.css) if not already present */
+// @layer utilities {
+//   @keyframes blinker {
+//     50% { opacity: 0; }
+//   }
+//   .animate-blink {
+//     animation: blinker 1s linear infinite;
+//   }
+// }
