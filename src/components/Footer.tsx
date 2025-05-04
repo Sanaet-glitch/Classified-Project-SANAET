@@ -1,10 +1,11 @@
-
 import React from 'react';
 import GlitchText from './GlitchText';
 import { cn } from '@/lib/utils';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const [openModal, setOpenModal] = React.useState<string | null>(null);
   
   const footerLinks = [
     { name: "Protocols", href: "#" },
@@ -37,20 +38,83 @@ const Footer: React.FC = () => {
           
           <div className="hidden md:flex space-x-6 mb-4 md:mb-0">
             {footerLinks.map((link, index) => (
-              <a 
-                key={index} 
-                href={link.href}
+              <button
+                key={index}
+                onClick={() => setOpenModal(link.name.toLowerCase())}
                 className={cn(
-                  "text-sm text-white/60 hover:text-primary transition-colors relative group",
+                  "text-sm text-white/60 hover:text-primary transition-colors relative group bg-transparent border-none cursor-pointer font-mono",
                   "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
                   "after:bg-primary/50 after:transform after:scale-x-0 after:origin-bottom-right",
                   "after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
                 )}
+                style={{ outline: 'none' }}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
+
+          {/* Modals for Protocols, Clearance, Security, Directives */}
+          <Dialog open={openModal === 'protocols'} onOpenChange={v => setOpenModal(v ? 'protocols' : null)}>
+            <DialogContent className="glass neon-border max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-primary font-mono">PROTOCOLS</DialogTitle>
+                <DialogDescription className="text-white/80 font-mono">
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>Code with clarity, security, and maintainability in mind.</li>
+                    <li>Follow modern best practices: version control, code reviews, and documentation.</li>
+                    <li>Embrace continuous learning and adaptability in all missions.</li>
+                    <li>Prioritize user experience and accessibility in every deployment.</li>
+                  </ul>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+          <Dialog open={openModal === 'clearance'} onOpenChange={v => setOpenModal(v ? 'clearance' : null)}>
+            <DialogContent className="glass neon-border max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-primary font-mono">CLEARANCE</DialogTitle>
+                <DialogDescription className="text-white/80 font-mono">
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>Security Level: MAXIMUM</li>
+                    <li>Full-Stack Developer, ICT Attachee, Community Volunteer</li>
+                    <li>Access to advanced web, backend, and security operations</li>
+                    <li>Authorized for mission-critical deployments and confidential projects</li>
+                  </ul>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+          <Dialog open={openModal === 'security'} onOpenChange={v => setOpenModal(v ? 'security' : null)}>
+            <DialogContent className="glass neon-border max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-primary font-mono">SECURITY</DialogTitle>
+                <DialogDescription className="text-white/80 font-mono">
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>End-to-end encrypted communications (TLS, EmailJS, secure forms)</li>
+                    <li>Best practices in authentication, authorization, and data privacy</li>
+                    <li>Experience with secure hospital and enterprise systems</li>
+                    <li>Continuous monitoring and rapid incident response</li>
+                  </ul>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+          <Dialog open={openModal === 'directives'} onOpenChange={v => setOpenModal(v ? 'directives' : null)}>
+            <DialogContent className="glass neon-border max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-primary font-mono">DIRECTIVES</DialogTitle>
+                <DialogDescription className="text-white/80 font-mono">
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>Deliver innovative, secure, and impactful software solutions</li>
+                    <li>Collaborate with teams and communities for greater mission success</li>
+                    <li>Empower users and clients through technology and education</li>
+                    <li>Uphold integrity, confidentiality, and excellence in all operations</li>
+                  </ul>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
           
           <div className="text-sm text-white/50 font-mono flex flex-col md:flex-row items-center">
             <div className="flex items-center mb-2 md:mb-0">

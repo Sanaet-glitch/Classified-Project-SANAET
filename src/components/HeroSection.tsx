@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import TerminalText from './TerminalText';
 import GlitchText from './GlitchText';
 import { ArrowDown } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 
 const HeroSection: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
   const beepRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState(false);
+  const [openModal, setOpenModal] = useState<string | null>(null);
 
   useEffect(() => {
     setLoaded(true);
