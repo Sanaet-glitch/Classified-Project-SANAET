@@ -62,6 +62,37 @@ const ResumeSection: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <DataCard
+            title="FEATURED EXPERIENCE"
+            securityLevel="CLASSIFIED"
+            className="mb-8"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="w-full md:w-1/2">
+                <img 
+                  src="/patient-experience-week.jpeg" 
+                  alt="Patient Experience Week at The Nairobi Hospital" 
+                  className="rounded shadow-lg object-cover w-full h-48 md:h-40" 
+                />
+              </div>
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <h3 className="text-lg font-bold text-primary mb-2">Patient Experience Week – The Nairobi Hospital</h3>
+                <p className="text-white/70 text-sm mb-2">
+                  Participated as a representative of the ICT Department in the 2025 Patient Experience Week, supporting digital operations and teamwork to enhance patient care. Engaged in event activities, technical support, and cross-departmental collaboration.
+                </p>
+                <a 
+                  href="https://www.linkedin.com/posts/thenairobihospital_patientexperienceweek-thenairobihospital-activity-7324399456475328512-lAnt?utm_source=share&utm_medium=member_ios&rcm=ACoAAFijv3QBpgTwdMr3RR7tL1tK7BrYmsrH2WU" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-primary hover:text-white font-mono text-xs mt-2 transition-colors"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.966 0-1.75-.79-1.75-1.76 0-.97.784-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.784 1.76-1.75 1.76zm13.5 11.27h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.46-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.6v5.596z"/></svg>
+                  View Event on LinkedIn
+                </a>
+              </div>
+            </div>
+          </DataCard>
+          
+          <DataCard
             title="FIELD OPERATIONS"
             securityLevel="TOP SECRET"
           >
@@ -98,7 +129,8 @@ const ResumeSection: React.FC = () => {
         
         <div className="text-center">
           <a 
-            href="/resume.pdf" 
+            href="/GEORGE SANAET SANKUI RESUME.pdf" 
+            download
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center glass px-6 py-3 rounded-md hover:neon-border transition-all group"
