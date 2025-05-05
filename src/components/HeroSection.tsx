@@ -175,7 +175,7 @@ const HeroSection: React.FC = () => {
               }}
             />
             <div id="easter-egg-reveal" className="hidden mt-4 animate-fade-in">
-              <span className="px-4 py-2 rounded bg-black/80 neon-border text-neon-green font-mono text-sm shadow-lg">
+              <span className="block max-w-xs sm:max-w-sm md:max-w-md break-words px-4 py-2 rounded bg-black/80 neon-border text-neon-green font-mono text-xs sm:text-sm shadow-lg">
                 🗝️ Access Granted: Welcome, Agent. The real mission is curiosity.
               </span>
             </div>
