@@ -127,6 +127,26 @@ const ResumeSection: React.FC = () => {
               ))}
             </div>
           </DataCard>
+
+          <DataCard
+            title="CERTIFICATIONS"
+            securityLevel="CONFIDENTIAL"
+          >
+            <div className="flex flex-col items-center gap-4">
+              <img
+                src="/edureka-certificate.jpg"
+                alt="Edureka Full Stack Development Internship Certificate"
+                className="rounded shadow-lg object-contain w-full max-w-xs border border-primary/30"
+              />
+              <div className="text-center">
+                <h3 className="text-base font-bold text-primary mb-1">Full Stack Development Internship Program</h3>
+                <div className="text-white/70 text-sm mb-1">Edureka</div>
+                <div className="text-xs text-white/50 mb-2">May 2025</div>
+                <p className="text-white/60 text-xs mb-2"> Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
+                <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="text-primary font-mono text-xs underline hover:text-white transition-colors">View Certificate PDF</a>
+              </div>
+            </div>
+          </DataCard>
         </div>
         
         <div className="text-center">
