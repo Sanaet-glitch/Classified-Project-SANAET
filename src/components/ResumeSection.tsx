@@ -134,35 +134,35 @@ const ResumeSection: React.FC = () => {
             title="CERTIFICATIONS"
             securityLevel="CONFIDENTIAL"
           >
-            <div className="flex flex-col md:flex-row gap-6 items-stretch md:items-start">
+            <div className="flex flex-col md:flex-row gap-8 items-stretch md:items-start">
               {/* Edureka Certificate */}
-              <div className="flex-1 flex flex-col items-center gap-4 mb-6 md:mb-0">
+              <div className="flex-1 flex flex-col items-center bg-black/30 border border-primary/40 rounded-xl shadow-lg p-4 mb-6 md:mb-0 transition-all hover:neon-border">
                 <img
                   src="/edureka-certificate.jpg"
                   alt="Edureka Full Stack Development Internship Certificate"
-                  className="rounded shadow-lg object-contain w-full max-w-xs border border-primary/30"
+                  className="rounded object-contain w-full max-w-xs h-40 mb-2 border border-primary/30 bg-white/5"
                 />
-                <div className="text-center">
+                <div className="text-center flex flex-col gap-1 flex-1 justify-between">
                   <h3 className="text-base font-bold text-primary mb-1">Full Stack Development Internship Program</h3>
                   <div className="text-white/70 text-sm mb-1">Edureka</div>
                   <div className="text-xs text-white/50 mb-2">May 2025</div>
-                  <p className="text-white/60 text-xs mb-2">Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
-                  <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="text-primary font-mono text-xs underline hover:text-white transition-colors">View Certificate PDF</a>
+                  <p className="text-white/60 text-xs mb-3">Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
+                  <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">View Certificate PDF</a>
                 </div>
               </div>
               {/* AWS Educate Badge */}
-              <div className="flex-1 flex flex-col items-center gap-4">
+              <div className="flex-1 flex flex-col items-center bg-black/30 border border-primary/40 rounded-xl shadow-lg p-4 transition-all hover:neon-border">
                 <img
                   src="/aws-educate-genai-badge.png"
                   alt="AWS Educate Introduction to Generative AI Badge"
-                  className="rounded shadow-lg object-contain w-full max-w-xs border border-primary/30 bg-white/5"
+                  className="rounded object-contain w-full max-w-xs h-40 mb-2 border border-primary/30 bg-white/5"
                 />
-                <div className="text-center">
+                <div className="text-center flex flex-col gap-1 flex-1 justify-between">
                   <h3 className="text-base font-bold text-primary mb-1">Introduction to Generative AI</h3>
                   <div className="text-white/70 text-sm mb-1">AWS Educate</div>
                   <div className="text-xs text-white/50 mb-2">Issued: May 2025</div>
-                  <p className="text-white/60 text-xs mb-2">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
-                  <a href="https://www.credly.com/badges/2e2e2e2e-2e2e-2e2e-2e2e-2e2e2e2e2e2e/public_url" target="_blank" rel="noopener noreferrer" className="text-primary font-mono text-xs underline hover:text-white transition-colors">Verify Badge</a>
+                  <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
+                  <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
                 </div>
               </div>
             </div>
