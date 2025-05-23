@@ -134,36 +134,76 @@ const ResumeSection: React.FC = () => {
             title="CERTIFICATIONS"
             securityLevel="CONFIDENTIAL"
           >
-            <div className="flex flex-col md:flex-row gap-8 items-stretch md:items-start">
-              {/* Edureka Certificate */}
-              <div className="flex-1 flex flex-col items-center bg-black/30 border border-primary/40 rounded-xl shadow-lg p-4 mb-6 md:mb-0 transition-all hover:neon-border">
-                <img
-                  src="/edureka-certificate.jpg"
-                  alt="Edureka Full Stack Development Internship Certificate"
-                  className="rounded object-contain w-full max-w-xs h-40 mb-2 border border-primary/30 bg-white/5"
-                />
-                <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                  <h3 className="text-base font-bold text-primary mb-1">Full Stack Development Internship Program</h3>
-                  <div className="text-white/70 text-sm mb-1">Edureka</div>
-                  <div className="text-xs text-white/50 mb-2">May 2025</div>
-                  <p className="text-white/60 text-xs mb-3">Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
-                  <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">View Certificate PDF</a>
+            {/* Modern horizontal scrollable carousel for desktop, vertical stack for mobile */}
+            <div className="w-full">
+              <div
+                className="flex gap-8 overflow-x-auto pb-4 md:pb-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-black/20"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                {/* Edureka Certificate */}
+                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
+                  <img
+                    src="/edureka-certificate.jpg"
+                    alt="Edureka Full Stack Development Internship Certificate"
+                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
+                  />
+                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Full Stack Development Internship Program</h3>
+                    <div className="text-white/70 text-sm mb-1">Edureka</div>
+                    <div className="text-xs text-white/50 mb-2">May 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
+                    <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">View Certificate PDF</a>
+                  </div>
+                </div>
+                {/* AWS Educate Badge: Introduction to Generative AI */}
+                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
+                  <img
+                    src="/aws-educate-genai-badge.png"
+                    alt="AWS Educate Introduction to Generative AI Badge"
+                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
+                  />
+                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Introduction to Generative AI</h3>
+                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
+                    <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+                  </div>
+                </div>
+                {/* AWS Educate Badge: Machine Learning Foundations */}
+                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
+                  <img
+                    src="/aws-educate-machine-learning-foundations.png"
+                    alt="AWS Educate Machine Learning Foundations Badge"
+                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
+                  />
+                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Machine Learning Foundations</h3>
+                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 23, 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Machine Learning Foundations training, demonstrating the ability to discuss fundamental concepts of machine learning and apply them using AWS Cloud tools.</p>
+                    <a href="https://www.credly.com/badges/01e30a03-cf93-4e3a-b68e-cc3e21413dc3/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+                  </div>
+                </div>
+                {/* AWS Educate Badge: Getting Started with Networking */}
+                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
+                  <img
+                    src="/aws-educate-getting-started-with-networking.png"
+                    alt="AWS Educate Getting Started with Networking Badge"
+                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
+                  />
+                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Getting Started with Networking</h3>
+                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 21, 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Getting Started with Networking training, demonstrating the ability to describe different ways to manage a network and use Amazon VPC.</p>
+                    <a href="https://www.credly.com/badges/73fc762a-0485-477f-a7a3-a7221416f4cf/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+                  </div>
                 </div>
               </div>
-              {/* AWS Educate Badge */}
-              <div className="flex-1 flex flex-col items-center bg-black/30 border border-primary/40 rounded-xl shadow-lg p-4 transition-all hover:neon-border">
-                <img
-                  src="/aws-educate-genai-badge.png"
-                  alt="AWS Educate Introduction to Generative AI Badge"
-                  className="rounded object-contain w-full max-w-xs h-40 mb-2 border border-primary/30 bg-white/5"
-                />
-                <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                  <h3 className="text-base font-bold text-primary mb-1">Introduction to Generative AI</h3>
-                  <div className="text-white/70 text-sm mb-1">AWS Educate</div>
-                  <div className="text-xs text-white/50 mb-2">Issued: May 2025</div>
-                  <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
-                  <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
-                </div>
+              {/* Optional: subtle scroll indicator for desktop */}
+              <div className="hidden md:block w-full text-center mt-2">
+                <span className="text-xs text-primary/60 font-mono">Scroll &rarr; to view more certifications</span>
               </div>
             </div>
           </DataCard>
