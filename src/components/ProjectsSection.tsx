@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import DataCard from './DataCard';
+import { useSecurityClearance } from '../hooks/useSecurityClearance';
+import GlitchEffect from './GlitchEffect';
 
 interface Project {
   id: number;
@@ -13,6 +15,7 @@ interface Project {
 }
 
 const ProjectsSection: React.FC = () => {
+  const { addSecurityPoints } = useSecurityClearance();
   // Placeholder projects - replace with your actual projects later
   const projects: Project[] = [
     {
@@ -47,20 +50,28 @@ const ProjectsSection: React.FC = () => {
     <section id="projects" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Mission Archives
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Mission Archives
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
             Declassified projects showcasing operational capabilities and technical expertise.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map(project => (
-            <div 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map(project => (            <div 
               key={project.id}
               className="group"
-              onMouseEnter={() => setActiveProject(project.id)}
+              data-project-id={project.id}
+              onMouseEnter={() => {
+                setActiveProject(project.id);
+                addSecurityPoints({
+                  type: 'project_hover',
+                  points: 3,
+                  description: `Viewed project ${project.id}`
+                });
+              }}
               onMouseLeave={() => setActiveProject(null)}
             >
               <DataCard 
@@ -101,13 +112,19 @@ const ProjectsSection: React.FC = () => {
                       <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                       UNDER DEVELOPMENT
                     </span>
-                  </div>
-                ) : (
+                  </div>                ) : (
                   <a 
                     href={project.link} 
                     className="inline-flex items-center text-sm font-mono text-primary hover:text-white transition-colors"
                     target="_blank" 
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      addSecurityPoints({
+                        type: 'external_link',
+                        points: 15,
+                        description: `Visited external project link ${project.id}`
+                      });
+                    }}
                   >
                     <span>View Project Details</span>
                   </a>

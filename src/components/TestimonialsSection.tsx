@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DataCard from './DataCard';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import GlitchEffect from './GlitchEffect';
 
 interface Testimonial {
   id: number;
@@ -63,11 +64,13 @@ const TestimonialsSection: React.FC = () => {
     <section id="testimonials" className="py-20 relative bg-black/30">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Field Reports
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Asset Evaluations
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
-            Intelligence gathered from previous mission collaborators.
+            Rotating testimonials from collaborators and references.
           </p>
         </div>
         

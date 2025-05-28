@@ -4,9 +4,12 @@ import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import DataCard from './DataCard';
 import { useToast } from '@/hooks/use-toast';
+import { useSecurityClearance } from '../hooks/useSecurityClearance';
+import GlitchEffect from './GlitchEffect';
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
+  const { addSecurityPoints } = useSecurityClearance();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -24,11 +27,18 @@ const ContactSection: React.FC = () => {
       [name]: value
     }));
   };
-  
-  // Handle form submission and send email via EmailJS
+    // Handle form submission and send email via EmailJS
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    
+    // Award points for form submission attempt
+    addSecurityPoints({
+      type: 'contact_form',
+      points: 25,
+      description: 'Submitted contact form'
+    });
+    
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -47,6 +57,14 @@ const ContactSection: React.FC = () => {
         },
         publicKey
       );
+      
+      // Award bonus points for successful submission
+      addSecurityPoints({
+        type: 'successful_contact',
+        points: 50,
+        description: 'Successfully sent message'
+      });
+      
       toast({
         title: 'Message Transmitted',
         description: 'Your communication has been received.',
@@ -73,11 +91,13 @@ const ContactSection: React.FC = () => {
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Communication Channel
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Secure Uplink
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
-            Establish secure contact for mission inquiries and collaboration proposals.
+            Encrypted contact form powered by EmailJS for confidential communication. Social and professional network links.
           </p>
         </div>
         

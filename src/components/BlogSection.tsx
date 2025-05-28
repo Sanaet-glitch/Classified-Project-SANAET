@@ -2,15 +2,18 @@
 
 import React from 'react';
 import DataCard from './DataCard';
+import GlitchEffect from './GlitchEffect';
 
 const BlogSection: React.FC = () => {
   return (
     <section id="blog" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Research Logs
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Research Logs
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
             Mission insights and technical documentation from the field.
           </p>
