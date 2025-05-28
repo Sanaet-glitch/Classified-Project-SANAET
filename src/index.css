@@ -42,11 +42,18 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-primary/20 selection:text-primary-foreground;
+    border-color: hsl(var(--border));
+  }
+  
+  *::selection {
+    background-color: hsla(var(--primary), 0.2);
+    color: hsl(var(--primary-foreground));
   }
   
   body {
-    @apply bg-background text-foreground antialiased;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
     font-family: 'Inter', sans-serif;
   }
 
@@ -55,19 +62,25 @@
   }
   
   .text-glow {
-    @apply text-shadow-glow;
+    text-shadow: 0 0 10px hsla(var(--primary), 0.8);
   }
 
   .neon-border {
-    @apply border border-primary/50 shadow-[0_0_10px_hsla(var(--primary),0.5)];
+    border: 1px solid hsla(var(--primary), 0.5);
+    box-shadow: 0 0 10px hsla(var(--primary), 0.5);
   }
   
   .glass {
-    @apply bg-black/30 backdrop-blur-sm border border-white/10 shadow-lg;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-accent;
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, hsl(var(--primary)), white, hsl(var(--accent)));
   }
 }
 
@@ -121,4 +134,274 @@
     linear-gradient(hsla(var(--primary), 0.2) 1px, transparent 1px),
     linear-gradient(90deg, hsla(var(--primary), 0.2) 1px, transparent 1px);
   background-size: 25px 25px;
+}
+
+/* CLI and Hacking Effects */
+.hacking-mode {
+  animation: hack-glitch 5s linear;
+}
+
+@keyframes hack-glitch {
+  0%, 100% { filter: none; }
+  10% { filter: hue-rotate(90deg) saturate(2); }
+  20% { filter: invert(1); }
+  30% { filter: sepia(1); }
+  40% { filter: contrast(2); }
+  50% { filter: brightness(2); }
+  60% { filter: blur(2px); }
+  70% { filter: grayscale(1); }
+  80% { filter: hue-rotate(180deg); }
+  90% { filter: saturate(0); }
+}
+
+.highlight-project {
+  animation: project-highlight 3s ease-in-out;
+  border: 2px solid hsla(var(--primary), 0.8) !important;
+  box-shadow: 0 0 20px hsla(var(--primary), 0.6) !important;
+}
+
+@keyframes project-highlight {
+  0%, 100% { 
+    transform: scale(1);
+    border-color: hsla(var(--primary), 0.8);
+  }
+  50% { 
+    transform: scale(1.02);
+    border-color: hsla(var(--accent), 0.8);
+    box-shadow: 0 0 30px hsla(var(--accent), 0.8);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Scrollbar styling for CLI terminal */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-primary\/40::-webkit-scrollbar-thumb {
+  background-color: hsla(var(--primary), 0.4);
+}
+
+.scrollbar-track-black\/20::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.shadow-neon {
+  box-shadow: 0 0 20px hsla(var(--primary), 0.6);
+}
+
+/* Enhanced Cyberpunk Effects */
+.data-stream {
+  animation: data-flow 2s linear infinite;
+}
+
+@keyframes data-flow {
+  0% { opacity: 0; transform: translateX(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+.security-breach {
+  animation: security-alert 1s ease-in-out infinite alternate;
+}
+
+@keyframes security-alert {
+  0% { 
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: #ff0000;
+  }
+  100% { 
+    background-color: rgba(255, 0, 0, 0.3);
+    border-color: #ff4444;
+  }
+}
+
+.terminal-boot {
+  animation: terminal-startup 3s ease-out;
+}
+
+@keyframes terminal-startup {
+  0% { 
+    opacity: 0;
+    transform: scale(0.8);
+    filter: brightness(0);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(0.5);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.hologram-flicker {
+  animation: hologram 4s ease-in-out infinite;
+}
+
+@keyframes hologram {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.9; }
+  85% { opacity: 0.7; }
+  95% { opacity: 1; }
+}
+
+.neural-network {
+  background: linear-gradient(45deg, 
+    transparent 40%, 
+    hsla(var(--primary), 0.1) 50%, 
+    transparent 60%);
+  background-size: 20px 20px;
+  animation: neural-pulse 3s ease-in-out infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% { background-position: 0 0; }
+  50% { background-position: 20px 20px; }
+}
+
+.access-granted {
+  animation: access-flash 2s ease-out;
+}
+
+@keyframes access-flash {
+  0% { 
+    background-color: rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 30px #00ff00;
+  }
+  100% { 
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.access-denied {
+  animation: denial-flash 1s ease-out;
+}
+
+@keyframes denial-flash {
+  0% { 
+    background-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 30px #ff0000;
+    transform: shake;
+  }
+  100% { 
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Enhanced Matrix Rain */
+.matrix-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.1;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.1) 100%);
+}
+
+/* Enhanced Glitch Effects */
+.enhanced-glitch {
+  position: relative;
+}
+
+.enhanced-glitch::before,
+.enhanced-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.enhanced-glitch::before {
+  animation: glitch-1 2s infinite linear alternate-reverse;
+  color: #ff00ff;
+  z-index: -1;
+}
+
+.enhanced-glitch::after {
+  animation: glitch-2 3s infinite linear alternate-reverse;
+  color: #00ffff;
+  z-index: -2;
+}
+
+.glitch-effect-low {
+  animation: glitch-distort-low 0.2s ease-in-out;
+}
+
+.glitch-effect-medium {
+  animation: glitch-distort-medium 0.3s ease-in-out;
+}
+
+.glitch-effect-high {
+  animation: glitch-distort-high 0.4s ease-in-out;
+}
+
+/* Subtle Glitch Effects for Readability (no transform, no layout shift) */
+.glitch-effect-low-soft {
+  animation: glitch-color-low 0.08s linear;
+}
+.glitch-effect-medium-soft {
+  animation: glitch-color-medium 0.08s linear;
+}
+.glitch-effect-high-soft {
+  animation: glitch-color-high 0.08s linear;
+}
+@keyframes glitch-color-low {
+  0%, 100% { color: inherit; text-shadow: none; opacity: 1; }
+  50% { color: #00ff88; text-shadow: 0 0 2px #00ff88, 0 0 4px #0ff; opacity: 0.92; }
+}
+@keyframes glitch-color-medium {
+  0%, 100% { color: inherit; text-shadow: none; opacity: 1; }
+  30% { color: #0ff; text-shadow: 0 0 2px #0ff, 0 0 6px #fff; opacity: 0.88; }
+  60% { color: #fff; text-shadow: 0 0 4px #00ff88, 0 0 8px #0ff; opacity: 0.94; }
+}
+@keyframes glitch-color-high {
+  0%, 100% { color: inherit; text-shadow: none; opacity: 1; }
+  20% { color: #ff00cc; text-shadow: 0 0 6px #ff00cc, 0 0 12px #fff; opacity: 0.85; }
+  60% { color: #00ff88; text-shadow: 0 0 8px #00ff88, 0 0 16px #0ff; opacity: 0.9; }
+}
+
+/* Loading Bar Animation for Security Gate */
+@keyframes loading-bar {
+  0% { width: 0%; }
+  50% { width: 60%; }
+  100% { width: 100%; }
 }

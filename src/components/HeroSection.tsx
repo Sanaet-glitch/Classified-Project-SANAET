@@ -1,18 +1,29 @@
 import React, { useEffect, useState, useRef } from 'react';
 import TerminalText from './TerminalText';
 import GlitchText from './GlitchText';
+import GlitchEffect from './GlitchEffect';
 import { ArrowDown } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
+import CLITerminal from './CLITerminal';
+import { useSecurityClearance } from '../hooks/useSecurityClearance';
 
 const HeroSection: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
   const beepRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState(false);
   const [openModal, setOpenModal] = useState<string | null>(null);
+  const [cliOpen, setCLIOpen] = useState(false);
+  const { addSecurityPoints } = useSecurityClearance();
 
   useEffect(() => {
     setLoaded(true);
-  }, []);
+    // Award points for visiting the site
+    addSecurityPoints({
+      type: 'site_visit',
+      points: 10,
+      description: 'Initial site access'
+    });
+  }, [addSecurityPoints]);
 
   // Play beep sound utility
   const playBeep = () => {
@@ -107,7 +118,7 @@ const HeroSection: React.FC = () => {
             <img
               src="/hero-profile.jpeg"
               alt="Agent Profile"
-              className="w-44 h-44 md:w-52 md:h-52 rounded-full object-cover neon-border shadow-lg mx-auto glitch-effect profile-glow group-hover:scale-105 transition-transform duration-300"
+              className="w-44 h-44 md:w-52 md:h-52 rounded-full object-cover neon-border shadow-lg mx-auto profile-glow group-hover:scale-105 transition-transform duration-300"
               style={{ boxShadow: '0 0 24px 4px #a259ff, 0 0 40px 8px #00ffe7' }}
             />
             {/* Glitch overlay */}
@@ -123,11 +134,13 @@ const HeroSection: React.FC = () => {
             />
           </div>
           
-          <h1 className={`text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-4 text-glow transition-all duration-700 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: '200ms'}}>
-            <span className="text-gradient">Classified</span>
-            <br />
-            <GlitchText text="PROJECT SANAET" className="text-white" intensity="high" />
-          </h1>
+          <GlitchEffect intensity="medium" triggerChance={0.04}>
+            <h1 className={`text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-4 text-glow transition-all duration-700 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: '200ms'}}>
+              <span className="text-gradient">Classified</span>
+              <br />
+              <GlitchText text="PROJECT SANAET" className="text-white" intensity="high" />
+            </h1>
+          </GlitchEffect>
           
           <p className={`text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto transition-all duration-700 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`} style={{transitionDelay: '400ms'}}>
             <TerminalText 
@@ -155,31 +168,60 @@ const HeroSection: React.FC = () => {
             <span className="relative z-10 mr-2">View Mission Files</span>
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform relative z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-          </button>
-
-          {/* Easter Egg Command Input */}
+          </button>          {/* Enhanced Command Input */}
           <div className="mt-6 w-full flex flex-col items-center">
             <input
               type="text"
-              placeholder="> Enter command..."
-              className="bg-black/60 border border-primary/40 rounded px-4 py-2 text-primary font-mono w-64 text-center focus:outline-none focus:ring-2 focus:ring-primary/60 neon-border placeholder:text-white/40"
-              onKeyDown={e => {
+              placeholder="> Enter command... (or 'terminal' for full CLI)"
+              className="bg-black/60 border border-primary/40 rounded px-4 py-2 text-primary font-mono w-64 text-center focus:outline-none focus:ring-2 focus:ring-primary/60 neon-border placeholder:text-white/40"              onKeyDown={e => {
                 if (e.key === 'Enter') {
                   const value = (e.target as HTMLInputElement).value.trim().toLowerCase();
                   if (value === 'unlock') {
                     playBeep();
+                    addSecurityPoints({
+                      type: 'easter_egg',
+                      points: 25,
+                      description: 'Discovered unlock command'
+                    });
                     document.getElementById('easter-egg-reveal')?.classList.remove('hidden');
+                  } else if (value === 'terminal' || value === 'cli') {
+                    playBeep();
+                    addSecurityPoints({
+                      type: 'cli_access',
+                      points: 15,
+                      description: 'Opened CLI terminal'
+                    });
+                    setCLIOpen(true);
+                  } else if (value === 'help') {
+                    playBeep();
+                    addSecurityPoints({
+                      type: 'help_request',
+                      points: 10,
+                      description: 'Requested help'
+                    });
+                    setCLIOpen(true);
+                  } else if (value.length > 0) {
+                    addSecurityPoints({
+                      type: 'exploration',
+                      points: 5,
+                      description: 'Explored command input'
+                    });
                   }
                   (e.target as HTMLInputElement).value = '';
                 }
               }}
             />
+            <div className="mt-2 text-xs text-primary/60 font-mono text-center">
+              Try: 'terminal', 'help', or 'unlock'
+            </div>
             <div id="easter-egg-reveal" className="hidden mt-4 animate-fade-in">
               <span className="block max-w-xs sm:max-w-sm md:max-w-md break-words px-4 py-2 rounded bg-black/80 neon-border text-neon-green font-mono text-xs sm:text-sm shadow-lg">
                 🗝️ Access Granted: Welcome, Agent. The real mission is curiosity.
               </span>
             </div>
           </div>
+
+          <CLITerminal isOpen={cliOpen} onClose={() => setCLIOpen(false)} />
 
           {/* Animated Security Badge */}
           <div className="mt-6 flex justify-center">
