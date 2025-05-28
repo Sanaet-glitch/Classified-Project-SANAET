@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import DataCard from './DataCard';
 import { ArrowDown } from 'lucide-react';
+import { useSecurityClearance } from '../hooks/useSecurityClearance';
+import GlitchEffect from './GlitchEffect';
 
 interface TimelineItem {
   year: string;
@@ -12,6 +14,7 @@ interface TimelineItem {
 }
 
 const ResumeSection: React.FC = () => {
+  const { addSecurityPoints } = useSecurityClearance();
   const [transmitting, setTransmitting] = useState(false);
 
   // Updated work experience from CV
@@ -56,11 +59,13 @@ const ResumeSection: React.FC = () => {
     <section id="resume" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Agent Dossier
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Agent Dossier
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
-            Operational history and training records of field agent.
+            Summarized field operations (work experience), training, and education. Downloadable full resume (PDF).
           </p>
         </div>
         
@@ -140,20 +145,35 @@ const ResumeSection: React.FC = () => {
                 className="flex gap-8 overflow-x-auto pb-4 md:pb-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-black/20"
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
-                {/* Edureka Certificate */}
+                {/* IBM SkillsBuild Badge: Governance, Risk, Compliance, and Data Privacy */}
                 <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
                   <img
-                    src="/edureka-certificate.jpg"
-                    alt="Edureka Full Stack Development Internship Certificate"
+                    src="/governance-risk-compliance-and-data-privacy.png"
+                    alt="IBM SkillsBuild Governance, Risk, Compliance, and Data Privacy"
                     className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
                   />
                   <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Full Stack Development Internship Program</h3>
-                    <div className="text-white/70 text-sm mb-1">Edureka</div>
-                    <div className="text-xs text-white/50 mb-2">May 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Gained foundational exposure to core full‐stack technologies—HTML5, CSS3, JavaScript, Node.js, Express.js and React—by attending Edureka & Vranda Enterprise’s Full Stack Development Internship Program demo session.</p>
-                    <a href="/edureka-certificate.pdf" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">View Certificate PDF</a>
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Governance, Risk, Compliance, and Data Privacy</h3>
+                    <div className="text-white/70 text-sm mb-1">IBM SkillsBuild</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 26, 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Advanced training in evaluating organizational data security frameworks, risk mitigation, and compliance strategies. Skills include data encryption, privacy regulations, backup planning, and governance implementation.</p>
+                    <a href="https://www.credly.com/badges/138973fd-52b3-4f85-8a83-d62c5a4d6c84/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
                   </div>
+                </div>
+                {/* IBM SkillsBuild Badge: Cybersecurity Fundamentals */}
+                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
+                  <img
+                    src="/cybersecurity-fundamentals.png"
+                    alt="IBM SkillsBuild Cybersecurity Fundamentals"
+                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
+                  />
+                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
+                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Cybersecurity Fundamentals</h3>
+                    <div className="text-white/70 text-sm mb-1">IBM SkillsBuild</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 24, 2025</div>
+                    <p className="text-white/60 text-xs mb-3">Foundational knowledge of cybersecurity principles, threat detection, cryptography, and incident response. Covers attack prevention strategies, social engineering tactics, and vulnerability management.</p>
+                    <a href="https://www.credly.com/badges/53fde89d-87ea-4efd-a46c-3013a4ab020f/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+                  </div>  
                 </div>
                 {/* AWS Educate Badge: Introduction to Generative AI */}
                 <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
@@ -165,7 +185,7 @@ const ResumeSection: React.FC = () => {
                   <div className="text-center flex flex-col gap-1 flex-1 justify-between">
                     <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Introduction to Generative AI</h3>
                     <div className="text-white/70 text-sm mb-1">AWS Educate</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 2025</div>
+                    <div className="text-xs text-white/50 mb-2">Issued: May 15, 2025</div>
                     <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
                     <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
                   </div>
@@ -209,10 +229,14 @@ const ResumeSection: React.FC = () => {
           </DataCard>
         </div>
         
-        <div className="text-center">
-          <button
+        <div className="text-center">          <button
             onClick={() => {
               setTransmitting(true);
+              addSecurityPoints({
+                type: 'resume_download',
+                points: 30,
+                description: 'Downloaded resume/CV'
+              });
               setTimeout(() => setTransmitting(false), 1800);
             }}
             className="inline-flex items-center glass px-6 py-3 rounded-md hover:neon-border transition-all group relative overflow-hidden resume-download-btn"

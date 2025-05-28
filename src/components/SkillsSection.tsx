@@ -2,6 +2,7 @@
 
 import React from 'react';
 import DataCard from './DataCard';
+import GlitchEffect from './GlitchEffect';
 
 interface SkillCategory {
   name: string;
@@ -54,9 +55,11 @@ const SkillsSection: React.FC = () => {
     <section id="skills" className="py-20 relative bg-black/30">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
-            Agent Capabilities
-          </h2>
+          <GlitchEffect intensity="low" triggerChance={0.06}>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-gradient">
+              Agent Capabilities
+            </h2>
+          </GlitchEffect>
           <p className="text-white/70 max-w-xl mx-auto">
             Technical proficiencies and specialized skill sets for mission execution.
           </p>
