@@ -54,14 +54,13 @@ const TerminalText = ({
       return () => clearInterval(intervalId);
     }
   }, [text, speed, startDelay, onComplete]);
-
   return (
-    <div className={cn("font-mono", className)}>
+    <span className={cn("font-mono", className)}>
       {displayedText}
       {!isComplete && (
         <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-0.5"></span>
       )}
-    </div>
+    </span>
   );
 };
 
