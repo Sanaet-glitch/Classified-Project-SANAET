@@ -19,8 +19,11 @@ const MatrixRain: React.FC = () => {
 
     let fontSize = getFontSize();
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Use a consistent height that doesn't change with mobile browser bars
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      canvas.width = vw;
+      canvas.height = Math.max(vh, document.documentElement.clientHeight);
       fontSize = getFontSize();
     };
     resizeCanvas();
@@ -31,7 +34,7 @@ const MatrixRain: React.FC = () => {
     let drops: number[] = Array(columns).fill(1);
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = fontSize + 'px monospace';
       for (let i = 0; i < drops.length; i++) {
@@ -48,9 +51,15 @@ const MatrixRain: React.FC = () => {
     draw();
 
     const handleResize = () => {
-      resizeCanvas();
-      columns = Math.floor(canvas.width / fontSize);
-      drops = Array(columns).fill(1);
+      // Only resize if there's a significant change to prevent constant resizing on mobile scroll
+      const newWidth = window.innerWidth;
+      const newHeight = Math.max(window.innerHeight, document.documentElement.clientHeight);
+      
+      if (Math.abs(canvas.width - newWidth) > 10 || Math.abs(canvas.height - newHeight) > 100) {
+        resizeCanvas();
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(1);
+      }
     };
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
@@ -65,8 +74,15 @@ const MatrixRain: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-10"
-      style={{ mixBlendMode: 'screen', width: '100vw', height: '100vh', maxWidth: '100vw', maxHeight: '100vh' }}
+      className="fixed inset-0 pointer-events-none z-0 opacity-50"
+      style={{ 
+        mixBlendMode: 'screen', 
+        width: '100vw', 
+        height: '100vh', 
+        maxWidth: '100vw', 
+        maxHeight: '100vh',
+        transform: 'translateZ(0)' // Force hardware acceleration for smoother scrolling
+      }}
     />
   );
 };
