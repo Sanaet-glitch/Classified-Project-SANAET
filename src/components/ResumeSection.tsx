@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import DataCard from './DataCard';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ChevronDown, ChevronUp } from 'lucide-react';
 import { useSecurityClearance } from '../hooks/useSecurityClearance';
 import GlitchEffect from './GlitchEffect';
 
@@ -16,6 +16,14 @@ interface TimelineItem {
 const ResumeSection: React.FC = () => {
   const { addSecurityPoints } = useSecurityClearance();
   const [transmitting, setTransmitting] = useState(false);
+  const [expandedCerts, setExpandedCerts] = useState<Record<string, boolean>>({});
+
+  const toggleCertExpansion = (certId: string) => {
+    setExpandedCerts(prev => ({
+      ...prev,
+      [certId]: !prev[certId]
+    }));
+  };
 
   // Updated work experience from CV
   const workExperience: TimelineItem[] = [
@@ -139,91 +147,418 @@ const ResumeSection: React.FC = () => {
             title="CERTIFICATIONS"
             securityLevel="CONFIDENTIAL"
           >
-            {/* Modern horizontal scrollable carousel for desktop, vertical stack for mobile */}
-            <div className="w-full">
-              <div
-                className="flex gap-8 overflow-x-auto pb-4 md:pb-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-black/20"
-                style={{ WebkitOverflowScrolling: 'touch' }}
-              >
-                {/* IBM SkillsBuild Badge: Governance, Risk, Compliance, and Data Privacy */}
-                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
-                  <img
-                    src="/governance-risk-compliance-and-data-privacy.png"
-                    alt="IBM SkillsBuild Governance, Risk, Compliance, and Data Privacy"
-                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
-                  />
-                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Governance, Risk, Compliance, and Data Privacy</h3>
-                    <div className="text-white/70 text-sm mb-1">IBM SkillsBuild</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 26, 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Advanced training in evaluating organizational data security frameworks, risk mitigation, and compliance strategies. Skills include data encryption, privacy regulations, backup planning, and governance implementation.</p>
-                    <a href="https://www.credly.com/badges/138973fd-52b3-4f85-8a83-d62c5a4d6c84/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+            {/* Hybrid: Security Dashboard + Compact Expandable Badges */}
+            <div className="w-full space-y-6">
+              {/* Header Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-primary/10 border border-primary/30 rounded-lg p-3 text-center">
+                  <div className="text-2xl font-bold text-primary">11</div>
+                  <div className="text-xs text-white/70 font-mono">ACTIVE BADGES</div>
+                </div>
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3 text-center">
+                  <div className="text-2xl font-bold text-green-400">100%</div>
+                  <div className="text-xs text-white/70 font-mono">VERIFIED</div>
+                </div>
+                <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 text-center">
+                  <div className="text-2xl font-bold text-blue-400">2</div>
+                  <div className="text-xs text-white/70 font-mono">PROVIDERS</div>
+                </div>
+                <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 text-center">
+                  <div className="text-2xl font-bold text-purple-400">2025</div>
+                  <div className="text-xs text-white/70 font-mono">LATEST</div>
+                </div>
+              </div>
+
+              {/* Categorized Compact Badges */}
+              <div className="space-y-6">
+                {/* Security & Compliance Section */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    <h4 className="text-red-400 font-mono text-sm font-bold">SECURITY & COMPLIANCE</h4>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {/* IBM SkillsBuild Cybersecurity Certificate */}
+                    <div key="cybersecurity-cert" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('cybersecurity-cert')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/ibm-skillsbuild-cybersecurity-certificate.png"
+                            alt="Cybersecurity Certificate"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">IBM SkillsBuild Cybersecurity Certificate</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['cybersecurity-cert'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['cybersecurity-cert'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: Jul 9, 2025</div>
+                            <p className="text-white/70 text-xs">This certificate earner has advanced technical skills in cybersecurity, such as security posture evaluation, vulnerability assessment, network architecture, cloud infrastructure security, security operations, and incident reporting. Through completion of a comprehensive curriculum, application-based assessments, and authentic experiential learning, the earner has developed workplace and career management skills and industry knowledge, and is prepared for a cybersecurity career across industries.</p>
+                            <a href="https://www.credly.com/badges/b1e83fff-c350-41a6-9081-ce06eaa34b50/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Governance Badge */}
+                    <div key="governance" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('governance')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/governance-risk-compliance-and-data-privacy.png"
+                            alt="Governance Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Governance, Risk, Compliance, and Data Privacy</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['governance'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['governance'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 26, 2025</div>
+                            <p className="text-white/70 text-xs">Advanced training in evaluating organizational data security frameworks, risk mitigation, and compliance strategies. Skills include data encryption, privacy regulations, backup planning.</p>
+                            <a href="https://www.credly.com/badges/138973fd-52b3-4f85-8a83-d62c5a4d6c84/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Cybersecurity Fundamentals */}
+                    <div key="cybersecurity-fundamentals" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('cybersecurity-fundamentals')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/cybersecurity-fundamentals.png"
+                            alt="Cybersecurity Fundamentals"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Cybersecurity Fundamentals</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['cybersecurity-fundamentals'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['cybersecurity-fundamentals'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 24, 2025</div>
+                            <p className="text-white/70 text-xs">Foundational knowledge of cybersecurity principles, threat detection, cryptography, and incident response. Covers attack prevention strategies, social engineering tactics.</p>
+                            <a href="https://www.credly.com/badges/53fde89d-87ea-4efd-a46c-3013a4ab020f/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Incident Response and Systems Forensics */}
+                    <div key="incident-response" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('incident-response')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/incident-response-and-systems-forensics.png"
+                            alt="Incident Response Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Incident Response and Systems Forensics</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['incident-response'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['incident-response'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: Jul 9, 2025</div>
+                            <p className="text-white/70 text-xs">Specialized training in cybersecurity incident response procedures, digital forensics, and systems analysis for security breach investigation.</p>
+                            <a href="https://www.credly.com/badges/70b565bb-69e9-46a6-a342-ce902b1b9cba/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Security Operations and Management */}
+                    <div key="security-operations" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('security-operations')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/security-operations-and-management.png"
+                            alt="Security Operations Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Security Operations and Management</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['security-operations'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['security-operations'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: Jul 1, 2025</div>
+                            <p className="text-white/70 text-xs">Advanced training in security operations center (SOC) management, threat monitoring, and security incident management processes.</p>
+                            <a href="https://www.credly.com/badges/0ab5ce07-8cc4-47b9-871b-d06fcece9bc3/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* System and Network Security */}
+                    <div key="network-security" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('network-security')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/system-and-network-security.png"
+                            alt="Network Security Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">System and Network Security</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['network-security'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['network-security'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: Jun 10, 2025</div>
+                            <p className="text-white/70 text-xs">Comprehensive training in network security architecture, system hardening, and network defense strategies including firewalls and intrusion detection systems.</p>
+                            <a href="https://www.credly.com/badges/055d5f49-664c-4a7e-9ed1-f602c35433e5/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Vulnerability Management */}
+                    <div key="vulnerability-mgmt" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('vulnerability-mgmt')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/vulnerability-management.png"
+                            alt="Vulnerability Management Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Vulnerability Management</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['vulnerability-mgmt'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['vulnerability-mgmt'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 30, 2025</div>
+                            <p className="text-white/70 text-xs">Expert training in vulnerability assessment, penetration testing methodologies, and security vulnerability remediation strategies.</p>
+                            <a href="https://www.credly.com/badges/7018336d-1c6b-421b-af18-d118985ae1bc/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Cloud Security */}
+                    <div key="cloud-security" className="bg-black/40 border border-red-500/40 rounded-lg overflow-hidden hover:border-red-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('cloud-security')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/cloud-security.png"
+                            alt="Cloud Security Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Cloud Security</h5>
+                            <div className="text-white/60 text-xs">IBM SkillsBuild</div>
+                          </div>
+                          {expandedCerts['cloud-security'] ? 
+                            <ChevronUp className="w-4 h-4 text-red-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-red-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['cloud-security'] && (
+                        <div className="px-3 pb-3 border-t border-red-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: Jun 20, 2025</div>
+                            <p className="text-white/70 text-xs">Specialized training in cloud security architecture, identity and access management, and securing cloud-native applications and infrastructure.</p>
+                            <a href="https://www.credly.com/badges/8306ee5b-e4c0-4edb-9fbf-ae9356fc97b7/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded border border-red-500/30 hover:bg-red-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-                {/* IBM SkillsBuild Badge: Cybersecurity Fundamentals */}
-                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
-                  <img
-                    src="/cybersecurity-fundamentals.png"
-                    alt="IBM SkillsBuild Cybersecurity Fundamentals"
-                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
-                  />
-                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Cybersecurity Fundamentals</h3>
-                    <div className="text-white/70 text-sm mb-1">IBM SkillsBuild</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 24, 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Foundational knowledge of cybersecurity principles, threat detection, cryptography, and incident response. Covers attack prevention strategies, social engineering tactics, and vulnerability management.</p>
-                    <a href="https://www.credly.com/badges/53fde89d-87ea-4efd-a46c-3013a4ab020f/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
-                  </div>  
-                </div>
-                {/* AWS Educate Badge: Introduction to Generative AI */}
-                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
-                  <img
-                    src="/aws-educate-genai-badge.png"
-                    alt="AWS Educate Introduction to Generative AI Badge"
-                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
-                  />
-                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Introduction to Generative AI</h3>
-                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 15, 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
-                    <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+
+                {/* Cloud & AI Section */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <h4 className="text-blue-400 font-mono text-sm font-bold">CLOUD & ARTIFICIAL INTELLIGENCE</h4>
                   </div>
-                </div>
-                {/* AWS Educate Badge: Machine Learning Foundations */}
-                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
-                  <img
-                    src="/aws-educate-machine-learning-foundations.png"
-                    alt="AWS Educate Machine Learning Foundations Badge"
-                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
-                  />
-                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Machine Learning Foundations</h3>
-                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 23, 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Machine Learning Foundations training, demonstrating the ability to discuss fundamental concepts of machine learning and apply them using AWS Cloud tools.</p>
-                    <a href="https://www.credly.com/badges/01e30a03-cf93-4e3a-b68e-cc3e21413dc3/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
-                  </div>
-                </div>
-                {/* AWS Educate Badge: Getting Started with Networking */}
-                <div className="flex-shrink-0 w-72 md:w-80 bg-black/30 border border-primary/40 rounded-xl shadow-xl p-5 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-neon hover:border-primary/80 snap-center group">
-                  <img
-                    src="/aws-educate-getting-started-with-networking.png"
-                    alt="AWS Educate Getting Started with Networking Badge"
-                    className="rounded object-contain w-full h-40 mb-3 border border-primary/30 bg-white/5 shadow-md"
-                  />
-                  <div className="text-center flex flex-col gap-1 flex-1 justify-between">
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-white transition-colors">Getting Started with Networking</h3>
-                    <div className="text-white/70 text-sm mb-1">AWS Educate</div>
-                    <div className="text-xs text-white/50 mb-2">Issued: May 21, 2025</div>
-                    <p className="text-white/60 text-xs mb-3">Completed the AWS Educate Getting Started with Networking training, demonstrating the ability to describe different ways to manage a network and use Amazon VPC.</p>
-                    <a href="https://www.credly.com/badges/73fc762a-0485-477f-a7a3-a7221416f4cf/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-semibold hover:bg-primary/40 hover:text-white transition-colors border border-primary/30">Verify Badge</a>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {/* GenAI Badge */}
+                    <div key="genai" className="bg-black/40 border border-blue-500/40 rounded-lg overflow-hidden hover:border-blue-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('genai')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/aws-educate-genai-badge.png"
+                            alt="GenAI Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Introduction to Generative AI</h5>
+                            <div className="text-white/60 text-xs">AWS Educate</div>
+                          </div>
+                          {expandedCerts['genai'] ? 
+                            <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['genai'] && (
+                        <div className="px-3 pb-3 border-t border-blue-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 15, 2025</div>
+                            <p className="text-white/70 text-xs">Completed the AWS Educate Introduction to Generative AI course, covering foundational concepts, ethical considerations, and practical applications of generative AI technologies.</p>
+                            <a href="https://www.credly.com/badges/852b5a8e-43b3-4fa9-9901-ad4639ae0fe6/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500/30 hover:bg-blue-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* ML Badge */}
+                    <div key="ml" className="bg-black/40 border border-blue-500/40 rounded-lg overflow-hidden hover:border-blue-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('ml')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/aws-educate-machine-learning-foundations.png"
+                            alt="ML Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Machine Learning Foundations</h5>
+                            <div className="text-white/60 text-xs">AWS Educate</div>
+                          </div>
+                          {expandedCerts['ml'] ? 
+                            <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['ml'] && (
+                        <div className="px-3 pb-3 border-t border-blue-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 23, 2025</div>
+                            <p className="text-white/70 text-xs">Completed the AWS Educate Machine Learning Foundations training, demonstrating the ability to discuss fundamental concepts of machine learning and apply them using AWS Cloud tools.</p>
+                            <a href="https://www.credly.com/badges/01e30a03-cf93-4e3a-b68e-cc3e21413dc3/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500/30 hover:bg-blue-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Networking Badge */}
+                    <div key="networking" className="bg-black/40 border border-blue-500/40 rounded-lg overflow-hidden hover:border-blue-500/80 transition-all">
+                      <button
+                        onClick={() => toggleCertExpansion('networking')}
+                        className="w-full p-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <img
+                            src="/aws-educate-getting-started-with-networking.png"
+                            alt="Networking Badge"
+                            className="w-12 h-12 rounded border border-primary/30 bg-white/5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold text-sm mb-1 line-clamp-2">Getting Started with Networking</h5>
+                            <div className="text-white/60 text-xs">AWS Educate</div>
+                          </div>
+                          {expandedCerts['networking'] ? 
+                            <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" /> : 
+                            <ChevronDown className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                          }
+                        </div>
+                      </button>
+                      {expandedCerts['networking'] && (
+                        <div className="px-3 pb-3 border-t border-blue-500/20 bg-black/20">
+                          <div className="pt-3 space-y-2">
+                            <div className="text-xs text-white/50">Issued: May 21, 2025</div>
+                            <p className="text-white/70 text-xs">Completed the AWS Educate Getting Started with Networking training, demonstrating the ability to describe different ways to manage a network and use Amazon VPC.</p>
+                            <a href="https://www.credly.com/badges/73fc762a-0485-477f-a7a3-a7221416f4cf/public_url" target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500/30 hover:bg-blue-500/30 transition-colors font-mono">VERIFY BADGE</a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-              {/* Optional: subtle scroll indicator for desktop */}
-              <div className="hidden md:block w-full text-center mt-2">
-                <span className="text-xs text-primary/60 font-mono">Scroll &rarr; to view more certifications</span>
+
+              {/* Footer Status */}
+              <div className="border-t border-primary/20 pt-4 mt-6">
+                <div className="flex items-center justify-between text-xs text-white/50 font-mono">
+                  <span>CLEARANCE STATUS: ACTIVE</span>
+                  <span>LAST UPDATED: {new Date().toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
           </DataCard>
